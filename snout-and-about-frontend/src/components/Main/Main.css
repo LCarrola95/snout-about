@@ -1,0 +1,67 @@
+/* Main container */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Content area: cards + aside */
+.main__content {
+  display: grid;
+  grid-template-columns: 1fr 320px; /* card area | aside */
+  gap: 2rem;
+  width: min(1200px, 92%);
+  margin: 2rem auto;
+  align-items: start;
+}
+
+/* Dog list grid for several cards */
+.dog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  align-content: start;
+}
+
+/* Aside (DogFact) */
+.main__aside {
+  position: sticky;
+  top: 1.5rem; /* on wide screens keeps it visible */
+}
+
+.main__cta {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.main__cta p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.main__cta-button {
+  display: inline-block;
+  background-color: #0d0d0d;
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.main__cta-button:hover {
+  background-color: #333;
+}
+
+/* Responsive: stack columns into single column on small screens */
+@media (max-width: 880px) {
+  .main__content {
+    grid-template-columns: 1fr;
+  }
+
+  .main__aside {
+    position: static;
+  }
+}

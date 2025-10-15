@@ -1,19 +1,21 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
-import BrowsePage from "../BrowsePage/BrowsePage";
+import Login from "../Login/Login";
+import Signup from "../Signup/Signup";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/browse" element={<BrowsePage />} />
-        {/* Add more routes as needed */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
