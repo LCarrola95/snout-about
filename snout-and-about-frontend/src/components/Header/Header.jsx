@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import "./Header.css";
 
-function Header() {
-  const isLoggedIn = false;
+function Header({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
 
   return (
@@ -18,11 +17,12 @@ function Header() {
             <img
               src={logo}
               alt="Snout and About logo"
-              className="header__logo"
+              className="header_logo"
             />
             <h1 className="header__title">Snout and About</h1>
           </Link>
         </div>
+
         {!isLoggedIn ? (
           <div className="header__actions">
             <button
@@ -45,7 +45,7 @@ function Header() {
             </Link>
             <button
               className="header__button header__button--logout"
-              onClick={() => console.log("logout")}
+              onClick={() => setIsLoggedIn(false)}
             >
               Log Out
             </button>

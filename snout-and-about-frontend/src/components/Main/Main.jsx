@@ -41,6 +41,16 @@ function Main() {
 
   return (
     <main className="main">
+      {!isLoggedIn && (
+        <section className="main__hero">
+          <h2 className="main__hero-title">
+            <span className="main__hero-icon" role="img" aria-label="paw print">
+              🐾
+            </span>
+            Find your perfect pup match
+          </h2>
+        </section>
+      )}
       <section className="main__content">
         <div className="dog-list">
           {mockDogs.map((dog) => (
@@ -71,7 +81,8 @@ function Main() {
         </section>
       )}
 
-      <Navigation />
+      <Navigation isLoggedIn={isLoggedIn} />
+
       <Footer />
     </main>
   );
