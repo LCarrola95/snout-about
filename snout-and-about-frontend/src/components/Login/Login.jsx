@@ -1,11 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-function Login() {
+function Login({ setIsLoggedIn }) {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    navigate("/profile");
+  };
+
   return (
     <main className="login">
       <h1 className="login__title">Welcome Back!</h1>
-      <form className="login__form">
+      <form
+        className="login__form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleLogin();
+        }}
+      >
         <label className="login__label">
           Email:
           <input

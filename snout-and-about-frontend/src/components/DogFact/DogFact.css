@@ -1,0 +1,33 @@
+.dog-fact {
+  background-color: #fff8e7;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 1rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dog-fact__title {
+  font-size: 1.4rem;
+  color: #ff9800;
+  margin-bottom: 0.5rem;
+}
+
+.dog-fact__text {
+  font-size: 1rem;
+  color: #333;
+  opacity: 0;
+  animation: dogfact-fade-in 0.6s ease-in-out forwards;
+}
+
+@keyframes dogfact-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
