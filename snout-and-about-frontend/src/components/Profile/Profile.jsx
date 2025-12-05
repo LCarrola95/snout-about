@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import closeButtonWhite from "../../assets/close-icon-white.svg";
+import ImageModal from "../ImageModal/ImageModal";
 import "./Profile.css";
 
 function Profile() {
-  const [showModal, setShowModal] = useState(false); // edit profile modal
-  const [showImageModal, setShowImageModal] = useState(false); // image viewer modal
-  const [profilePic, setProfilePic] = useState("https://placedog.net/500?id=1");
+  const [showEdit, setShowEdit] = useState(false);
+  const [showImage, setShowImage] = useState(false);
 
-  // Centralized profile state
   const [name, setName] = useState("Your Name");
   const [bio, setBio] = useState("Dog lover & adventure buddy!");
   const [location, setLocation] = useState("Colorado, USA");
+  const [profilePic, setProfilePic] = useState("https://placedog.net/500?id=1");
 
   const [gallery] = useState([
     "https://placedog.net/400?id=2",
@@ -19,24 +18,41 @@ function Profile() {
     "https://placedog.net/400?id=4",
   ]);
 
-  const handleSaveProfile = ({ name, bio, location, profilePic }) => {
+  const [themeSongUrl, setThemeSongUrl] = useState("");
+
+  const getSpotifyEmbedUrl = (url) => {
+    if (!url) return "";
+    const match = url.match(/spotify\.com\/track\/([a-zA-Z0-9]+)/);
+    if (!match) return "";
+    return `https://open.spotify.com/embed/track/${match[1]}?utm_source=generator`;
+  };
+
+  const embedUrl = getSpotifyEmbedUrl(themeSongUrl);
+
+  const handleSaveProfile = ({
+    name,
+    bio,
+    location,
+    profilePic,
+    themeSongUrl,
+  }) => {
     setName(name);
     setBio(bio);
     setLocation(location);
     setProfilePic(profilePic);
-    setShowModal(false);
+    setThemeSongUrl(themeSongUrl || "");
+    setShowEdit(false);
   };
 
   return (
     <div className="profile">
-      {/* --- HEADER SECTION --- */}
       <div className="profile__header">
         <div className="profile__avatar-container">
           <img
             src={profilePic}
             alt="Profile"
             className="profile__avatar"
-            onClick={() => setShowImageModal(true)} // 👈 opens full-size modal
+            onClick={() => setShowImage(true)}
           />
         </div>
 
@@ -46,14 +62,13 @@ function Profile() {
           <p className="profile__location">{location}</p>
           <button
             className="profile__edit-button"
-            onClick={() => setShowModal(true)}
+            onClick={() => setShowEdit(true)}
           >
             Edit Profile
           </button>
         </div>
       </div>
 
-      {/* --- GALLERY SECTION --- */}
       <section className="profile__gallery">
         <h2 className="profile__section-title">Photo Gallery</h2>
         <div className="profile__gallery-grid">
@@ -68,53 +83,61 @@ function Profile() {
         </div>
       </section>
 
-      {/* --- SPOTIFY PLACEHOLDER SECTION --- */}
+      {/* Theme Song section */}
       <section className="profile__spotify">
-        <h2 className="profile__section-title">My Dog Walk Playlist</h2>
-        <div className="profile__spotify-placeholder">
-          Spotify integration coming soon!
-        </div>
+        <h2 className="profile__section-title">My Theme Song</h2>
+
+        {!themeSongUrl ? (
+          <div className="profile__spotify-placeholder">
+            Add your dog&apos;s theme song in <strong>Edit Profile</strong> by
+            pasting a Spotify track link.
+          </div>
+        ) : (
+          <div className="profile__spotify-card">
+            <p className="profile__spotify-label">Theme song</p>
+            <a
+              href={themeSongUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="profile__spotify-link"
+            >
+              Open in Spotify
+            </a>
+
+            {embedUrl && (
+              <div className="profile__spotify-embed">
+                <iframe
+                  src={embedUrl}
+                  title="Spotify theme song"
+                  width="100%"
+                  height="80"
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
+              </div>
+            )}
+          </div>
+        )}
       </section>
 
-      {/* --- EDIT PROFILE MODAL --- */}
-      {showModal && (
-        <EditProfileModal
-          name={name}
-          bio={bio}
-          location={location}
-          profilePic={profilePic}
-          onSave={handleSaveProfile}
-          onClose={() => setShowModal(false)}
-        />
-      )}
-      {/* --- IMAGE VIEWER MODAL --- */}
-      {showImageModal && (
-        <div
-          className="modal"
-          onClick={() => setShowImageModal(false)} // click background to close
-        >
-          <div
-            className="modal__content modal__image-viewer"
-            onClick={(e) => e.stopPropagation()} // prevent accidental close
-          >
-            <button
-              className="modal__close-button"
-              onClick={() => setShowImageModal(false)}
-            >
-              <img
-                src={closeButtonWhite}
-                alt="Close"
-                className="modal__close-icon"
-              />
-            </button>
-            <img
-              src={profilePic}
-              alt="Full-size Profile"
-              className="modal__image"
-            />
-          </div>
-        </div>
-      )}
+      <EditProfileModal
+        isOpen={showEdit}
+        onClose={() => setShowEdit(false)}
+        onSave={handleSaveProfile}
+        name={name}
+        bio={bio}
+        location={location}
+        profilePic={profilePic}
+        themeSongUrl={themeSongUrl}
+      />
+
+      <ImageModal
+        isOpen={showImage}
+        onClose={() => setShowImage(false)}
+        src={profilePic}
+        alt={`${name}'s profile`}
+      />
     </div>
   );
 }

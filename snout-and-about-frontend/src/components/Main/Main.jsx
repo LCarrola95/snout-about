@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import DogCard from "../DogCard/DogCard";
 import DogFact from "../DogFact/DogFact";
 import Navigation from "../Navigation/Navigation";
@@ -36,9 +35,7 @@ const mockDogs = [
   },
 ];
 
-function Main() {
-  const isLoggedIn = false;
-
+function Main({ isLoggedIn, onSignupClick }) {
   return (
     <main className="main">
       {!isLoggedIn && (
@@ -62,7 +59,7 @@ function Main() {
               location={dog.location}
               bio={dog.bio}
               image={dog.image}
-              showButtons={false}
+              showButtons={isLoggedIn}
             />
           ))}
         </div>
@@ -72,12 +69,17 @@ function Main() {
         </aside>
       </section>
 
+      {/* CTA should ONLY show when logged out */}
       {!isLoggedIn && (
         <section className="main__cta">
-          <p>Want to see more adorable profiles?</p>
-          <Link to="/signup" className="main__cta-button">
+          <p className="main__cta-text">Want to see more adorable profiles?</p>
+          <button
+            type="button"
+            className="main__cta-button"
+            onClick={() => onSignupClick?.()}
+          >
             Sign Up
-          </Link>
+          </button>
         </section>
       )}
 

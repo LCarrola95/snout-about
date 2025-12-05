@@ -1,19 +1,19 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import "./Header.css";
 
-function Header({ isLoggedIn, setIsLoggedIn }) {
-  const navigate = useNavigate();
+function Header({ isLoggedIn, onLoginClick, onSignupClick, onLogout }) {
+  const location = useLocation(); // safer than window.location
+
+  const isProfilePage = location.pathname === "/profile";
 
   return (
     <header className="header">
       <div className="header__container">
+        {/* LOGO → Home or Browse */}
         <div className="header__brand">
-          <Link
-            to={isLoggedIn ? "/browse" : "/"}
-            className="header__brand-link"
-          >
+          <Link to="/" className="header__brand-link">
             <img
               src={logo}
               alt="Snout and About logo"
@@ -23,32 +23,41 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
           </Link>
         </div>
 
+        {/* LOGGED OUT VIEW */}
         {!isLoggedIn ? (
           <div className="header__actions">
             <button
               className="header__button header__button--login"
-              onClick={() => navigate("/login")}
+              onClick={onLoginClick}
             >
               Log In
             </button>
             <button
               className="header__button header__button--signup"
-              onClick={() => navigate("/signup")}
+              onClick={onSignupClick}
             >
               Create Account
             </button>
           </div>
         ) : (
+          /* LOGGED IN VIEW */
           <nav className="header__nav">
-            <Link to="/profile" className="header__nav-link">
-              Profile
-            </Link>
-            <button
-              className="header__button header__button--logout"
-              onClick={() => setIsLoggedIn(false)}
-            >
-              Log Out
-            </button>
+            {/* On browse/home → show Profile */}
+            {!isProfilePage && (
+              <Link to="/profile" className="header__nav-link">
+                Profile
+              </Link>
+            )}
+
+            {/* On profile → show Logout */}
+            {isProfilePage && (
+              <button
+                className="header__button header__button--logout"
+                onClick={onLogout}
+              >
+                Log Out
+              </button>
+            )}
           </nav>
         )}
       </div>

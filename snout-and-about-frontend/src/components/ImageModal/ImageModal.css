@@ -1,0 +1,8 @@
+.image-modal__img {
+  display: block;
+  max-width: 92vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 0; /* change to 12px if you want rounded corners */
+  box-shadow: none; /* no frame/shadow */
+}

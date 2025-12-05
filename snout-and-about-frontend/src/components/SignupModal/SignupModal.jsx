@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ isOpen, onClose, onLogin }) {
+function SignupModal({ isOpen, onClose, onSignup }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -10,9 +11,9 @@ function LoginModal({ isOpen, onClose, onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // later: validate, call backend, etc.
-    if (onLogin) {
-      onLogin();
+    // later: send data to backend
+    if (onSignup) {
+      onSignup();
     }
 
     onClose();
@@ -21,17 +22,29 @@ function LoginModal({ isOpen, onClose, onLogin }) {
 
   return (
     <ModalWithForm
-      name="login"
-      title="Welcome Back!"
+      name="signup"
+      title="Join Snout and About"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      submitText="Log In"
+      submitText="Create Account"
     >
       <div className="form__field">
-        <label htmlFor="login-email">Email</label>
+        <label htmlFor="signup-name">Name</label>
         <input
-          id="login-email"
+          id="signup-name"
+          className="form__input"
+          type="text"
+          placeholder="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+
+      <div className="form__field">
+        <label htmlFor="signup-email">Email</label>
+        <input
+          id="signup-email"
           className="form__input"
           type="email"
           placeholder="you@dogmail.com"
@@ -41,12 +54,12 @@ function LoginModal({ isOpen, onClose, onLogin }) {
       </div>
 
       <div className="form__field">
-        <label htmlFor="login-password">Password</label>
+        <label htmlFor="signup-password">Password</label>
         <input
-          id="login-password"
+          id="signup-password"
           className="form__input"
           type="password"
-          placeholder="••••••••"
+          placeholder="Create a password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -55,4 +68,4 @@ function LoginModal({ isOpen, onClose, onLogin }) {
   );
 }
 
-export default LoginModal;
+export default SignupModal;

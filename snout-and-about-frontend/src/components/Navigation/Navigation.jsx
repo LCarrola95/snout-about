@@ -1,3 +1,4 @@
+// src/components/Navigation/Navigation.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
@@ -9,7 +10,7 @@ function Navigation({ isLoggedIn }) {
         {isLoggedIn ? (
           <>
             <li className="navigation__item">
-              <Link to="/" className="navigation__link">
+              <Link to="/browse" className="navigation__link">
                 Browse
               </Link>
             </li>
