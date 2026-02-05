@@ -14,11 +14,6 @@
   flex-wrap: wrap;
 }
 
-.profile__avatar-container {
-  flex-shrink: 0;
-  position: relative;
-}
-
 .profile__avatar {
   width: 150px;
   height: 150px;
@@ -43,27 +38,40 @@
   color: #333;
 }
 
+.profile__details {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.profile__location {
+  font-size: 0.95rem;
+  color: #555;
+}
+
 .profile__bio {
   font-size: 1.1rem;
-  margin-bottom: 15px;
+  margin-top: 6px;
   color: #555;
+}
+
+.profile__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
 }
 
 .profile__edit-button {
   padding: 8px 16px;
-  background-color: #0077cc;
+  background-color: #000;
+  font-weight: 600;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
 }
 
-.profile__edit-button:hover {
-  background-color: #005fa3;
-}
-
-/* --- Gallery Section --- */
 .profile__gallery {
   margin-top: 30px;
 }
@@ -86,14 +94,11 @@
   object-fit: cover;
   border-radius: 10px;
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
 .profile__gallery-img:hover {
   transform: scale(1.03);
-}
-
-.profile__spotify {
-  margin-top: 30px;
 }
 
 .profile__spotify-card {
@@ -105,66 +110,15 @@
   gap: 10px;
 }
 
-.profile__spotify-label {
-  font-weight: 600;
-}
-
 .profile__spotify-link {
   font-size: 0.9rem;
   text-decoration: underline;
   color: #1db954;
 }
 
-.profile__spotify-link:hover {
-  opacity: 0.85;
-}
-
 .profile__spotify-embed {
-  margin-top: 6px;
   border-radius: 8px;
   overflow: hidden;
-}
-
-.modal__close-button {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: transparent; /* no dark circle behind it */
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  z-index: 10;
-  line-height: 0;
-  transition: transform 0.15s ease;
-}
-
-.modal__close-icon {
-  width: 22px;
-  height: 22px;
-  filter: none; /* remove any extra glow/shadow on icon */
-}
-
-.modal__close-button:hover {
-  transform: scale(1.1);
-}
-
-/* --- Image Viewer Modal --- */
-.modal__image-viewer {
-  position: relative; /* anchor close button here */
-  display: inline-block; /* shrink-wrap to image */
-  background: transparent !important;
-  padding: 0 !important;
-  border: none !important;
-  box-shadow: none !important; /* remove white/glow frame */
-}
-
-.modal__image {
-  display: block;
-  max-width: 92vw;
-  max-height: 85vh;
-  border-radius: 0; /* set to 12px if you want rounded corners */
-  object-fit: cover;
-  box-shadow: none !important; /* remove drop shadow on the image */
 }
 
 @media (max-width: 600px) {

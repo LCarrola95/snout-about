@@ -1,11 +1,10 @@
-/* Overlay */
 .popup {
   position: fixed;
   inset: 0;
   display: none;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.55);
   z-index: 1000;
 }
 
@@ -13,7 +12,6 @@
   display: flex;
 }
 
-/* Default modal “card” */
 .popup__container {
   position: relative;
   background: #ffffff;
@@ -24,28 +22,48 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* Close button */
-.popup__close {
+.floating-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 0;
-  margin: 0;
-  background: transparent;
+  top: -25px;
+  right: -22px;
+  z-index: 2000;
+  background: none;
   border: none;
+  padding: 0;
   cursor: pointer;
-  line-height: 0;
 }
 
 .popup__close-icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
-/* Variant: for image popup, no white card */
+.floating-close:hover {
+  opacity: 0.8;
+}
+
 .popup_type_image .popup__container {
   background: transparent;
-  border-radius: 0;
-  padding: 0;
   box-shadow: none;
+  padding: 0;
+  width: fit-content;
+  max-width: 92vw;
+}
+
+@media (max-width: 420px) {
+  .popup__container {
+    padding: 18px;
+    max-width: 92vw;
+  }
+
+  .floating-close {
+    top: -20px;
+    right: -16px;
+  }
+
+  .popup__close-icon {
+    width: 22px;
+    height: 22px;
+  }
 }

@@ -5,13 +5,13 @@
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <circle cx="30" cy="30" r="29" stroke="#D3D3D3" stroke-width="2" />
+  <circle cx="30" cy="30" r="30" fill="#D32F2F" />
   <line
     x1="20"
     y1="20"
     x2="40"
     y2="40"
-    stroke="#000"
+    stroke="white"
     stroke-width="2"
     stroke-linecap="round"
   />
@@ -20,7 +20,7 @@
     y1="20"
     x2="20"
     y2="40"
-    stroke="#000"
+    stroke="white"
     stroke-width="2"
     stroke-linecap="round"
   />

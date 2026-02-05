@@ -1,4 +1,3 @@
-import React from "react";
 import Modal from "../Modal/Modal";
 import "./ModalWithForm.css";
 
@@ -11,6 +10,8 @@ function ModalWithForm({
   submitText = "Save",
   children,
   closeIconSrc,
+  isValid = true,
+  errorText = "",
 }) {
   return (
     <Modal
@@ -21,8 +22,12 @@ function ModalWithForm({
     >
       <form className="form" onSubmit={onSubmit} noValidate>
         {title && <h3 className="form__title">{title}</h3>}
+
         <div className="form__fields">{children}</div>
-        <button className="form__submit" type="submit">
+
+        {errorText && <span className="form__error">{errorText}</span>}
+
+        <button className="form__submit" type="submit" disabled={!isValid}>
           {submitText}
         </button>
       </form>

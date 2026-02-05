@@ -1,5 +1,5 @@
-// src/components/App/App.jsx
-import React, { useState } from "react";
+import { useState } from "react";
+import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -7,8 +7,6 @@ import Profile from "../Profile/Profile";
 import LoginModal from "../LoginModal/LoginModal";
 import SignupModal from "../SignupModal/SignupModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
-import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -55,12 +53,12 @@ function App() {
         />
       </Routes>
 
-      {/* Auth modals */}
       <LoginModal
         isOpen={showLogin}
         onClose={() => setShowLogin(false)}
         onLogin={handleAuthSuccess}
       />
+
       <SignupModal
         isOpen={showSignup}
         onClose={() => setShowSignup(false)}

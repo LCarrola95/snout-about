@@ -1,4 +1,3 @@
-import React from "react";
 import Modal from "../Modal/Modal";
 import closeWhite from "../../assets/close-icon-white.svg";
 import "./ImageModal.css";

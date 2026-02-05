@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function SignupModal({ isOpen, onClose, onSignup }) {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [touchedEmail, setTouchedEmail] = useState(false);
+  const [touchedPassword, setTouchedPassword] = useState(false);
+
   const navigate = useNavigate();
+
+  const isValidEmail = email.includes("@");
+  const isValidPassword = password.length >= 6;
+
+  const emailError =
+    touchedEmail && !email
+      ? "Email is required"
+      : touchedEmail && !isValidEmail
+        ? "Enter a valid email"
+        : "";
+
+  const passwordError =
+    touchedPassword && !password
+      ? "Password is required"
+      : touchedPassword && !isValidPassword
+        ? "Password must be at least 6 characters"
+        : "";
+
+  const isFormValid = isValidEmail && isValidPassword;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isFormValid) return;
 
-    // later: send data to backend
     if (onSignup) {
       onSignup();
     }
@@ -25,22 +47,18 @@ function SignupModal({ isOpen, onClose, onSignup }) {
       name="signup"
       title="Join Snout and About"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={() => {
+        onClose();
+        setEmail("");
+        setPassword("");
+        setTouchedEmail(false);
+        setTouchedPassword(false);
+      }}
       onSubmit={handleSubmit}
       submitText="Create Account"
+      isValid={isFormValid}
+      errorText={emailError || passwordError}
     >
-      <div className="form__field">
-        <label htmlFor="signup-name">Name</label>
-        <input
-          id="signup-name"
-          className="form__input"
-          type="text"
-          placeholder="Your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-
       <div className="form__field">
         <label htmlFor="signup-email">Email</label>
         <input
@@ -49,7 +67,11 @@ function SignupModal({ isOpen, onClose, onSignup }) {
           type="email"
           placeholder="you@dogmail.com"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setTouchedEmail(true);
+          }}
+          required
         />
       </div>
 
@@ -61,7 +83,11 @@ function SignupModal({ isOpen, onClose, onSignup }) {
           type="password"
           placeholder="Create a password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setTouchedPassword(true);
+          }}
+          required
         />
       </div>
     </ModalWithForm>

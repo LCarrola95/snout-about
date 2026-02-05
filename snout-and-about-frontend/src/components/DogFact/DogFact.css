@@ -10,6 +10,7 @@
 
 .dog-fact__title {
   font-size: 1.4rem;
+
   color: #ff9800;
   margin-bottom: 0.5rem;
 }
@@ -19,6 +20,28 @@
   color: #333;
   opacity: 0;
   animation: dogfact-fade-in 0.6s ease-in-out forwards;
+}
+
+.dog-fact__button {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #000;
+  color: #fff;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dog-fact__button:hover {
+  opacity: 0.9;
+}
+
+.dog-fact__error {
+  font-size: 0.9rem;
+  color: #ef4444;
+  margin-top: 8px;
 }
 
 @keyframes dogfact-fade-in {

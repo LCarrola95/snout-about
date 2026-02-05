@@ -1,58 +1,49 @@
-import React from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import "./Header.css";
 
 function Header({ isLoggedIn, onLoginClick, onSignupClick, onLogout }) {
-  const location = useLocation(); // safer than window.location
-
+  const location = useLocation();
   const isProfilePage = location.pathname === "/profile";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="header">
       <div className="header__container">
-        {/* LOGO → Home or Browse */}
-        <div className="header__brand">
-          <Link to="/" className="header__brand-link">
-            <img
-              src={logo}
-              alt="Snout and About logo"
-              className="header_logo"
-            />
-            <h1 className="header__title">Snout and About</h1>
-          </Link>
-        </div>
+        <Link to="/" className="header__brand-link">
+          <img src={logo} alt="Snout and About logo" className="header__logo" />
+          <h1 className="header__title">Snout and About</h1>
+        </Link>
 
-        {/* LOGGED OUT VIEW */}
         {!isLoggedIn ? (
-          <div className="header__actions">
+          <div className="header__actions header__desktop-only">
             <button
-              className="header__button header__button--login"
+              className="header__btn header__btn--secondary"
               onClick={onLoginClick}
             >
               Log In
             </button>
             <button
-              className="header__button header__button--signup"
+              className="header__btn header__btn--primary"
               onClick={onSignupClick}
             >
               Create Account
             </button>
           </div>
         ) : (
-          /* LOGGED IN VIEW */
-          <nav className="header__nav">
-            {/* On browse/home → show Profile */}
+          <nav className="header__nav header__desktop-only">
             {!isProfilePage && (
-              <Link to="/profile" className="header__nav-link">
+              <Link
+                to="/profile"
+                className="header__btn header__btn--secondary"
+              >
                 Profile
               </Link>
             )}
-
-            {/* On profile → show Logout */}
             {isProfilePage && (
               <button
-                className="header__button header__button--logout"
+                className="header__btn header__btn--secondary"
                 onClick={onLogout}
               >
                 Log Out
@@ -60,7 +51,60 @@ function Header({ isLoggedIn, onLoginClick, onSignupClick, onLogout }) {
             )}
           </nav>
         )}
+
+        <button
+          className="header__hamburger"
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+        >
+          ☰
+        </button>
       </div>
+
+      {isMenuOpen && (
+        <div className="header__mobile-menu">
+          {!isLoggedIn ? (
+            <>
+              <button
+                className="header__btn header__btn--secondary"
+                onClick={() => {
+                  onLoginClick();
+                  setIsMenuOpen(false);
+                }}
+              >
+                Log In
+              </button>
+              <button
+                className="header__btn header__btn--primary"
+                onClick={() => {
+                  onSignupClick();
+                  setIsMenuOpen(false);
+                }}
+              >
+                Sign Up
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/profile"
+                className="header__btn header__btn--secondary"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Profile
+              </Link>
+              <button
+                className="header__btn header__btn--secondary"
+                onClick={() => {
+                  onLogout();
+                  setIsMenuOpen(false);
+                }}
+              >
+                Log Out
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </header>
   );
 }
