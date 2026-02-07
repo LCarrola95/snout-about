@@ -6,7 +6,7 @@ Snout & About is a responsive React application designed to help users (dogs, in
 
 ## Project Pitch Video
 
-Check out [this video](https://drive.google.com/file/d/1esg3Nb_oDxrAOO6WwrDlYV-nIuky53w9/view?usp=drive_link), where I describe my project and some challenges I faced while building it.
+Check out [this video](https://drive.google.com/file/d/1esg3Nb_oDxrAOO6WwrDlYV-nIuky53w9/view?usp=sharing), where I describe my project and some challenges I faced while building it.
 
 ---
 
