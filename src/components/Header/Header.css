@@ -1,0 +1,108 @@
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 0.75rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__brand-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  gap: 0.5rem;
+}
+
+.header__logo {
+  width: 24px;
+  height: 24px;
+}
+
+.header__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.header__actions,
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__btn {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.header__btn--primary {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.header__btn--primary:hover {
+  filter: brightness(1.15);
+}
+
+.header__btn--secondary {
+  background: #fff;
+  color: #000;
+  border-color: #dcdcdc;
+}
+
+.header__btn--secondary:hover {
+  border-color: #000;
+}
+
+@media (max-width: 420px) {
+  .header__desktop-only {
+    display: none !important;
+  }
+
+  .header__hamburger {
+    display: block;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+
+  .header__mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background: #fff;
+    border-top: 1px solid #e6e6e6;
+  }
+
+  .header__mobile-menu .header__btn {
+    text-align: center;
+  }
+}
+
+@media (min-width: 421px) {
+  .header__hamburger {
+    display: none;
+  }
+}

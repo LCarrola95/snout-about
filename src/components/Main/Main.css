@@ -1,0 +1,76 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fffdf9;
+}
+
+.main__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+
+.dog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.main__aside {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.main__hero {
+  text-align: center;
+  margin: 3rem 0 2rem;
+  padding: 2.5rem 1rem;
+}
+
+.main__hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.main__hero-icon {
+  font-size: 2.2rem;
+  color: #ff9800;
+  transform: rotate(-10deg);
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.main__hero-icon:hover {
+  animation: wiggle 0.5s ease-in-out;
+  cursor: default;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(-10deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-15deg);
+  }
+  75% {
+    transform: rotate(8deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}

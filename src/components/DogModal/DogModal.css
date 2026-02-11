@@ -1,0 +1,185 @@
+.dogmodal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dogmodal__content {
+  background: #fff;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 14px;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+}
+
+.dogmodal__close {
+  position: absolute;
+  top: -25px;
+  right: -22px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dogmodal__close img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.dogmodal__close:hover {
+  opacity: 0.8;
+}
+
+.dogmodal__image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.dogmodal__name {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.dogmodal__details,
+.dogmodal__location,
+.dogmodal__bio {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.dogmodal__actions {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.dogmodal__btn {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.dogmodal__btn img {
+  width: 32px;
+  height: 32px;
+}
+
+.dogmodal__btn:hover {
+  transform: scale(1.1);
+}
+
+.dogmodal__btn--active {
+  transform: scale(1.08);
+  animation: button-pop 0.25s ease-out;
+}
+
+.dogmodal__btn--like.dogmodal__btn--active {
+  background: #22c55e;
+  animation:
+    button-pop 0.25s ease-out,
+    like-pulse 0.4s ease-out;
+}
+
+.dogmodal__btn--reject.dogmodal__btn--active {
+  background: #dc2626;
+}
+
+@media (max-width: 600px) {
+  .dogmodal__content {
+    max-width: 360px;
+    padding: 18px;
+  }
+
+  .dogmodal__name {
+    font-size: 1.6rem;
+  }
+
+  .dogmodal__btn {
+    width: 60px;
+    height: 60px;
+  }
+
+  .dogmodal__btn img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 420px) {
+  .dogmodal__content {
+    width: 94%;
+    max-width: 335px;
+    padding: 16px;
+  }
+
+  .dogmodal__close {
+    top: -20px;
+    right: -18px;
+  }
+
+  .dogmodal__image {
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+
+  .dogmodal__name {
+    font-size: 1.45rem;
+  }
+
+  .dogmodal__details,
+  .dogmodal__location,
+  .dogmodal__bio {
+    font-size: 0.9rem;
+  }
+
+  .dogmodal__actions {
+    gap: 20px;
+    margin-top: 16px;
+  }
+
+  .dogmodal__btn {
+    width: 55px;
+    height: 55px;
+  }
+
+  .dogmodal__btn img {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@keyframes button-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes like-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+}
