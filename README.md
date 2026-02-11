@@ -8,8 +8,7 @@ Snout & About is a responsive React application designed to help users (dogs, in
 
 You can view the deployed project here:
 
-Live Site:
-lcarrola95.github.io/snout-about/
+https://lcarrola95.github.io/snout-about/
 
 ---
 
