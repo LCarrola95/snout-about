@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header
         isLoggedIn={isLoggedIn}
         onLoginClick={() => setShowLogin(true)}
@@ -64,7 +64,7 @@ function App() {
         onClose={() => setShowSignup(false)}
         onSignup={handleAuthSuccess}
       />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
